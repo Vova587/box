@@ -11,6 +11,7 @@
 //CONSTANTS
 const String API_KEY = "jwNV369TwuUBF8Y42ZFqN0pHe53UGMoxebCakZpo0ZU=";
 const String SERVER_URL = "clearskymapssimplestaging.azurewebsites.net";
+const String SERVER_IP = "104.40.158.55";
 const double MOL_CO2 = 44.01;
 const float MOL_LPG = 0;
 const float MOL_CO = 28.01;
@@ -190,7 +191,7 @@ void SendData(String data)
   SIM800.println("AT+CIFSR\r"); //RESPONSE= Returns an IP
   Serial.println(ReadGSM());
   delay(10000);
-  SIM800.println("AT+CIPSTART=\"UDP\",\"" + SERVER_URL + "\", 80\r"); //RESPONSE= CONNECTED OK
+  SIM800.println("AT+CIPSTART=\"TCP\",\"" + SERVER_IP + "\", 80\r"); //RESPONSE= CONNECTED OK
   Serial.println(ReadGSM());
   delay(6000);
   SIM800.println("AT+CIPSEND\r"); //RESPONSE= >
@@ -228,7 +229,7 @@ void SendData(String data)
   SIM800.println("AT+CIPSHUT"); //RESPONSE= OK
   Serial.println(ReadGSM());
   delay(2000);
-  delay(4000);
+  delay(4000);r
 }
 
 String ReadGSM()
